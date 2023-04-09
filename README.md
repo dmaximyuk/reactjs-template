@@ -17,7 +17,7 @@ What is this template for? Everything is simply banal. There are a lot of templa
 # Install
 ```bash
 npm i
-npm run start
+npm run dev
 ```
 
 #Requirements
