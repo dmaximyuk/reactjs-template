@@ -1,0 +1,35 @@
+// colors
+$white: #ffffff;
+$black: #232e35;
+$light-gray: #edebeb;
+$alternative-lighter-gray: #fbfbfb;
+$gray: #656d72;
+$alternative-gray: #f1f1f1;
+$dark-gray: #656d72;
+$purple: #7e74f1;
+$light-purple: #f5f3fe;
+$accent: $purple;
+
+// page paddings
+$padding-phone: 20px;
+
+// media query
+$adaptive-padding-phone: 65px;
+$adaptive-padding-tablet: 45px;
+$adaptive-padding-laptop: 80px;
+$adaptive-padding-desktop: 105px;
+$adaptive-padding-wq-desktop: 125px;
+
+// fonts
+$fonts-family-default: sans-serif;
+$fonts-family-header: "Plus Jakarta Sans", $fonts-family-default;
+$fonts-family-subheader: "Inter", $fonts-family-default;
+$fonts-family-text: "Inter", $fonts-family-default;
+$font-weight-header: 700;
+$font-weight-subheader: 500;
+$font-weight-text: 400;
+
+// header
+$header-default-size: 100px;
+$header-laptop-size: 84px;
+$header-tablet-size: 70px;

@@ -1,0 +1,19 @@
+@mixin respond($type) {
+  @if $type == phone {
+    @media screen and (max-width: 768px) {
+      @content;
+    }
+  } @else if $type == tablet {
+    @media screen and (max-width: 1024px) {
+      @content;
+    }
+  } @else if $type == laptop {
+    @media screen and (max-width: 1440px) {
+      @content;
+    }
+  } @else if $type == desktop {
+    @media screen and (min-width: 1920px) {
+      @content;
+    }
+  }
+}
