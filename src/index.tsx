@@ -4,9 +4,9 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import { routes } from "routes";
 
-const container = document.getElementById("root") as HTMLElement;
-const root = ReactDOM.createRoot(container);
-const logo = `
+const root = ReactDOM.createRoot(document.getElementById("root")!);
+const logo: string =
+`
      DDD     M       M
     D   D    M M   M M
     D   D    M  M M  M
