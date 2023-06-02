@@ -18,7 +18,8 @@
     "jsx": "react-jsx",
     "baseUrl": "./src/",
     "declaration": false,
-    "declarationMap": false
+    "declarationMap": false,
+    "outDir": "./dist"
   },
   "extends": "./tsconfig.paths.json",
   "include": ["src"],
