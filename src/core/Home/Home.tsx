@@ -1,7 +1,12 @@
-import { FC } from "react";
+import "./Home.sass";
 
-import { Page } from "uikit";
+import { type FC } from "react";
+import { useTranslation } from "i18nano";
 
-export const Home: FC = () => {
-  return <Page>ok</Page>;
+import type { HomeProps } from "./Home.interface";
+
+export const Home: FC<HomeProps> = () => {
+  const t = useTranslation();
+
+  return <div className="Home">{t("app.name")}</div>;
 };

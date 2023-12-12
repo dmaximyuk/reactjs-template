@@ -1,12 +1,19 @@
-import { Home } from "core";
-import { RouteObject, createBrowserRouter } from "react-router-dom";
+import { type RouteObject, createBrowserRouter } from "react-router-dom";
 
-const routes: RouteObject[] = [
+import { App, Home } from "core";
+
+const routes: Array<RouteObject> = [
   {
-    path: "/",
-    element: <Home />,
-    children: [],
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+    ],
   },
 ];
 
-export { routes };
+const router = createBrowserRouter(routes, { basename: "/" });
+
+export { routes, router };
