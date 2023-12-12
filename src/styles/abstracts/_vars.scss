@@ -1,0 +1,47 @@
+body {
+  // colors
+  --white: #ffffff;
+  --dark: #1e1f23;
+  --gray: #9da6ab;
+  --light-gray: #242225;
+  --lilic: #8325fc;
+  --green: #02c39a;
+  --yellow: #febf3d;
+  --purp: #fe6d7a;
+  --blue: #2e6dee;
+
+  --accent: var(--blue);
+  --page-background-color: var(--white);
+  --footer-background-color: var(--gray);
+
+  // fonts
+  --fonts-family-default: sans-serif;
+  --fonts-family-header: "Roboto", var(--fonts-family-default);
+  --fonts-family-description: "Roboto", var(--fonts-family-default);
+  --fonts-family-text: "Roboto", var(--fonts-family-default);
+  --font-weight-header: 500;
+  --font-weight-header-accent: 500;
+  --font-weight-description: 400;
+  --font-weight-text: 400;
+  --font-size-default: 16px;
+  --font-size-header-accent: var(--font-size-default);
+  --font-size-header-xl: calc(var(--font-size-default) / 100 * 200);
+  --font-size-header-l: calc(var(--font-size-default) / 100 * 165);
+  --font-size-header-m: calc(var(--font-size-default) / 100 * 115);
+  --font-size-text: var(--font-size-default);
+  --font-size-description: calc(var(--font-size-default) / 100 * 90);
+
+  // gaps
+  --block-gap: 28px;
+  --block-gap-tablet: 20px;
+  --block-gap-laptop: 20px;
+  --block-gap-desktop: 20px;
+  --block-padding: 15px;
+  --block-padding-tablet: 20px;
+  --block-padding-laptop: 28px;
+  --block-padding-desktop: 32px;
+  --page-padding: 16px;
+
+  // box styles
+  --box-shadow: 0px 4px 8px -2px;
+}
