@@ -14,22 +14,8 @@ body {
   --page-background-color: var(--white);
   --footer-background-color: var(--gray);
 
-  // fonts
-  --fonts-family-default: sans-serif;
-  --fonts-family-header: "Roboto", var(--fonts-family-default);
-  --fonts-family-description: "Roboto", var(--fonts-family-default);
-  --fonts-family-text: "Roboto", var(--fonts-family-default);
-  --font-weight-header: 500;
-  --font-weight-header-accent: 500;
-  --font-weight-description: 400;
-  --font-weight-text: 400;
-  --font-size-default: 16px;
-  --font-size-header-accent: var(--font-size-default);
-  --font-size-header-xl: calc(var(--font-size-default) / 100 * 200);
-  --font-size-header-l: calc(var(--font-size-default) / 100 * 165);
-  --font-size-header-m: calc(var(--font-size-default) / 100 * 115);
-  --font-size-text: var(--font-size-default);
-  --font-size-description: calc(var(--font-size-default) / 100 * 90);
+  // font
+  --font-family: -apple-system, system-ui, Helvetica Neue, Roboto, sans-serif;
 
   // gaps
   --block-gap: 28px;
@@ -41,6 +27,8 @@ body {
   --block-padding-laptop: 28px;
   --block-padding-desktop: 32px;
   --page-padding: 16px;
+  --placement-row-padding: 12px;
+  --placement-column-padding: 0px;
 
   // box styles
   --box-shadow: 0px 4px 8px -2px;
