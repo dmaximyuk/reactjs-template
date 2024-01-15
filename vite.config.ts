@@ -4,13 +4,12 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
 
-import { version } from "./package.json";
 import { compilerOptions } from "./tsconfig.json";
 
 export default defineConfig({
   publicDir: "public",
   build: {
-    outDir: path.join(compilerOptions.outDir, "web", version || "0.0.0"),
+    outDir: path.join(compilerOptions.outDir),
     minify: "terser",
     rollupOptions: {
       output: {
