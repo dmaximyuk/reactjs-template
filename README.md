@@ -22,5 +22,5 @@ npm run dev
 
 #Requirements
 ```bash
-node -v # >= 18 ( lts at the moment 09/04/2023 ), I'm using version 17.0.1 but I'm not sure if there will be no errors
+node -v # >= 20.3.1 ( lts at the moment 09/04/2023 ), I'm using version 17.0.1 but I'm not sure if there will be no errors
 ```
