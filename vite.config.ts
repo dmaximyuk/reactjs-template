@@ -1,22 +1,32 @@
-import path from "node:path";
 import { defineConfig } from "vite";
 
-import react from "@vitejs/plugin-react";
+import react from "@vitejs/plugin-react-swc";
 import tsconfigPaths from "vite-tsconfig-paths";
+import svgr from "vite-plugin-svgr";
 
 import { compilerOptions } from "./tsconfig.json";
 
 export default defineConfig({
+  appType: "spa",
   publicDir: "public",
   build: {
-    outDir: path.join(compilerOptions.outDir),
+    sourcemap: false,
+    cssCodeSplit: true,
+    cssMinify: "lightningcss",
+    outDir: compilerOptions.outDir,
     minify: "terser",
+    terserOptions: {
+      maxWorkers: 2,
+      compress: {
+        drop_debugger: true,
+        drop_console: true,
+      },
+    },
     rollupOptions: {
       output: {
         chunkFileNames: "js/[hash].js",
         entryFileNames: "js/[hash].js",
         assetFileNames: (opt) => {
-          // @ts-ignore
           const [[, ext]] = Array.from(opt.name.matchAll(/.([0-9-a-z]+)$/g));
           return `${ext}/[hash].${ext}`;
         },
@@ -25,6 +35,7 @@ export default defineConfig({
   },
   server: {
     port: 3000,
+    strictPort: true,
   },
-  plugins: [tsconfigPaths(), react()],
+  plugins: [tsconfigPaths(), react(), svgr()],
 });
