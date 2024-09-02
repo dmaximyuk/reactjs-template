@@ -2,11 +2,11 @@ import { defineConfig } from "vite";
 
 import react from "@vitejs/plugin-react-swc";
 import tsconfigPaths from "vite-tsconfig-paths";
-import svgr from "vite-plugin-svgr";
 
 import { compilerOptions } from "./tsconfig.json";
 
 export default defineConfig({
+  base: "/",
   appType: "spa",
   publicDir: "public",
   build: {
@@ -15,6 +15,7 @@ export default defineConfig({
     cssMinify: "lightningcss",
     outDir: compilerOptions.outDir,
     minify: "terser",
+    manifest: false,
     terserOptions: {
       maxWorkers: 2,
       compress: {
@@ -27,7 +28,9 @@ export default defineConfig({
         chunkFileNames: "js/[hash].js",
         entryFileNames: "js/[hash].js",
         assetFileNames: (opt) => {
-          const [[, ext]] = Array.from(opt.name.matchAll(/.([0-9-a-z]+)$/g));
+          const [[, ext]] = Array.from(
+            (opt.name as string).matchAll(/.([0-9-a-z]+)$/g),
+          );
           return `${ext}/[hash].${ext}`;
         },
       },
@@ -37,5 +40,5 @@ export default defineConfig({
     port: 3000,
     strictPort: true,
   },
-  plugins: [tsconfigPaths(), react(), svgr()],
+  plugins: [tsconfigPaths(), react()],
 });
