@@ -48,50 +48,25 @@ export const Flex = forwardRef(
       return str;
     };
 
-    const getJustifyContent = () => {
+    const getPlacement = (placement: FlexPlacement) => {
       let str = "";
 
-      if (horizontal === "start" || horizontal === "end") {
+      if (placement === "start" || placement === "end") {
         str += "flex-";
       }
 
-      str += horizontal;
+      str += placement;
 
       return str;
     };
 
-    const getAlignItems = () => {
-      let str = "";
-
-      if (vertical === "start" || vertical === "end") {
-        str += "flex-";
-      }
-
-      str += vertical;
-
-      return str;
-    };
-
-    const getPadding = () => {
-      switch (typeof padding) {
+    const getSize = (num: number | string | undefined) => {
+      switch (typeof num) {
         case "string":
           return padding;
 
         case "number":
-          return `${padding}${unit}`;
-
-        default:
-          return "normal";
-      }
-    };
-
-    const getGap = () => {
-      switch (typeof gap) {
-        case "string":
-          return gap;
-
-        case "number":
-          return `${gap}${unit}`;
+          return `${num}${unit}`;
 
         default:
           return "normal";
@@ -102,14 +77,16 @@ export const Flex = forwardRef(
       <div
         ref={ref}
         className={classNames("Flex", className)}
-        style={{
-          "--direction": getDirection(),
-          "--justifyContent": getJustifyContent(),
-          "--alignItems": getAlignItems(),
-          "--padding": getPadding(),
-          "--gap": getGap(),
-          ...style,
-        }}
+        style={
+          {
+            "--direction": getDirection(),
+            "--justifyContent": getPlacement(horizontal),
+            "--alignItems": getPlacement(vertical),
+            "--padding": getSize(padding),
+            "--gap": getSize(gap),
+            ...style,
+          } as Record<string, unknown>
+        }
         {...props}
       />
     );
