@@ -31,9 +31,8 @@ export const Home: FC<HomeProps> = () => {
 
         <Flex
           style={{ background: "orange", height: 100 }}
-          direction={"column"}
           horizontal={"center"}
-          vertical={"start"}
+          vertical={"center"}
           gap={25}
           padding={25}
         >

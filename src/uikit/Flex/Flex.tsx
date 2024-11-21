@@ -17,7 +17,7 @@ export interface FlexProps extends AllHTMLAttributes<HTMLElement> {
   /* default: "false" */
   reverse?: boolean;
 
-  direction: FlexDirection;
+  direction?: FlexDirection;
   horizontal: FlexPlacement;
   vertical: FlexPlacement;
 }
@@ -30,9 +30,9 @@ export const Flex = forwardRef(
       unit = "px",
       gap,
       className,
-      horizontal = "start",
-      vertical,
       direction = "row",
+      horizontal = "start",
+      vertical = "start",
       style = {},
       ...props
     }: FlexProps,
