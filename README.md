@@ -7,9 +7,9 @@ This template is designed for developers who want to quickly set up a React.js p
 
 ## 📸 Screenshots
 
-### Main Screen
+### Build analysis
 
-![Main Screen Screenshot](repository/images/bundle.png)
+![Build Analysis Screenshot](repository/images/bundle.png)
 
 ## ✨ Features  
 - **Clean and Minimal**: No unnecessary files or configurations.  
