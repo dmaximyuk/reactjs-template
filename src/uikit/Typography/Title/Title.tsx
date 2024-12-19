@@ -1,9 +1,9 @@
 import "./Title.sass";
 
 import { type ElementType, type FC } from "react";
-import classNames from "classnames";
+import cn from "clsx";
 
-import { Typography, TypographyProps } from "uikit";
+import { Typography, TypographyProps } from "@/uikit";
 
 type TitleLevel = "1" | "2" | "3";
 
@@ -17,7 +17,7 @@ const titleLevelTags: Record<TitleLevel, ElementType> = {
   "3": "h4",
 };
 
-export const Title: FC<TitleProps> = ({
+const Title: FC<TitleProps> = ({
   level = "2",
   className = "",
   Component,
@@ -25,7 +25,9 @@ export const Title: FC<TitleProps> = ({
 }) => (
   <Typography
     {...props}
-    className={classNames("Title", `Title__wrapper--${level}`, className)}
+    className={cn("Title", `Title__wrapper--${level}`, className)}
     Component={Component || titleLevelTags[level]}
   />
 );
+
+export default Title;

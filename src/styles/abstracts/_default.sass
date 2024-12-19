@@ -1,31 +1,25 @@
+body
+  overflow-x: hidden
+  
 body, #root
+  box-sizing: border-box
   background-color: var(--background) !important
 
-#root
+*
   box-sizing: border-box
 
-body,
-div,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-span,
-img
+button, a, img
   -webkit-touch-callout: none
   -webkit-user-select: none
   -moz-user-select: none
   -ms-user-select: none
   user-select: none
 
+img
+  pointer-events: none
+
 div > *
   overflow-wrap: break-word
-
-*
-  -webkit-tap-highlight-color: transparent
 
 *:active, *:hover, *:focus
   outline: 0

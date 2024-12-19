@@ -1,15 +1,16 @@
-import "./App.sass";
-
 import { type FC } from "react";
 
 import { Outlet } from "react-router-dom";
-import { Header } from "components";
+import { Header, SEO } from "@/components";
 
-export const App: FC = () => {
+const App: FC = () => {
   return (
     <>
+      <SEO />
       <Header />
       <Outlet />
     </>
   );
 };
+
+export default App;

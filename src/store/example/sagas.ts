@@ -1,6 +1,6 @@
 import { all, call, takeLatest } from "redux-saga/effects";
 
-import { Api } from "api";
+import { Api } from "@/api";
 
 import { exampleActions } from "./index";
 

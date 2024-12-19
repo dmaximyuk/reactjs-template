@@ -1,17 +1,19 @@
-import { App, Home } from "core";
+import { App, Home } from "@/core";
+import { removeUnnecessary } from "@/utils";
 
 import { createBrowserRouter, type RouteObject } from "react-router-dom";
 
-import { RouteId } from "models";
+import { RouteID } from "@/models";
 
+const basename = "/";
 const pages: RouteObject[] = [
   {
-    id: RouteId.App,
-    path: "/",
+    id: RouteID.App,
+    path: basename,
     element: <App />,
     children: [
       {
-        id: RouteId.Home,
+        id: RouteID.Home,
         path: "/",
         element: <Home />,
       },
@@ -19,21 +21,7 @@ const pages: RouteObject[] = [
   },
 ];
 
-const removeIdFromRoutes = (routes: RouteObject[]): RouteObject[] => {
-  return routes.map(({ id, children, ...rest }): RouteObject => {
-    const updatedChildren = children ? removeIdFromRoutes(children) : undefined;
-
-    console.log(id);
-
-    return {
-      ...rest,
-      children: updatedChildren,
-    } as RouteObject;
-  });
-};
-
-const routes = removeIdFromRoutes(pages);
-
-const router = createBrowserRouter(routes, { basename: "/" });
+const routes = removeUnnecessary(pages);
+const router = createBrowserRouter(routes, { basename });
 
 export { routes, router, pages };

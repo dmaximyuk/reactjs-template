@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 
-const API_URL = "https://api_url_example";
+import { API_URL } from "@/vars";
 
 export const Api = axios.create({
   baseURL: API_URL,

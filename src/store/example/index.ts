@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { RootState } from "store/rootReducer";
+import type { RootState } from "@/store/rootReducer";
 import type { ExampleState } from "./interface";
 
 const initialState: ExampleState = {

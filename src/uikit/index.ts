@@ -1,4 +1,3 @@
-export * from "./Container/Container";
-export * from "./Flex/Flex";
-
+export * from "./Block";
+export * from "./Service";
 export * from "./Typography";
