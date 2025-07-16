@@ -1,23 +1,21 @@
-import "./styles/main.sass";
+import "@/shared/styles/main.sass";
 
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
-import { RouterProvider } from "react-router-dom";
-import { Provider as Store } from "react-redux";
+import { RouterProvider, QueryClientProvider } from "@/app/providers";
 
-import { store } from "@/store/store";
+import "@/shared/lib/i18n";
 
-import { router } from "@/routes";
+const rootElement = document.getElementById("root")!;
+if (!rootElement.innerHTML) {
+  const root = createRoot(rootElement);
 
-import "@/locale";
-
-const root = createRoot(document.getElementById("root")!);
-
-root.render(
-  <StrictMode>
-    <Store store={store}>
-      <RouterProvider router={router} />
-    </Store>
-  </StrictMode>,
-);
+  root.render(
+    <StrictMode>
+      <QueryClientProvider>
+        <RouterProvider />
+      </QueryClientProvider>
+    </StrictMode>,
+  );
+}
