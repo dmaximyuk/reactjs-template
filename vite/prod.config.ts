@@ -28,6 +28,7 @@ export default (params: VITE_EXPORT_PARAMS) =>
         },
       },
       rollupOptions: {
+        treeshake: true,
         output: {
           experimentalMinChunkSize: 15_000,
           chunkFileNames: "js/[hash].js",
