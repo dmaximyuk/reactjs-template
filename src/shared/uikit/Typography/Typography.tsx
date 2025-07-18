@@ -1,6 +1,11 @@
 import "./Typography.sass";
 
-import { AllHTMLAttributes, ElementType, forwardRef } from "react";
+import {
+  AllHTMLAttributes,
+  ElementType,
+  forwardRef,
+  ForwardRefRenderFunction,
+} from "react";
 import cn from "clsx";
 
 export interface TypographyProps extends AllHTMLAttributes<HTMLElement> {
@@ -10,32 +15,30 @@ export interface TypographyProps extends AllHTMLAttributes<HTMLElement> {
   plain?: boolean;
 }
 
-const Typography = forwardRef(
-  (
-    {
-      Component = "p",
-      weight = "3",
-      plain = true,
-      caps = false,
-      className = "",
-      ...restProps
-    }: TypographyProps,
-    ref,
-  ) => (
-    <Component
-      ref={ref}
-      className={cn(
-        "Typography",
-        `Typography__wrapper--weight-${weight}`,
-        {
-          [`Typography__wrapper--plain`]: plain,
-          [`Typography__wrapper--caps`]: caps,
-        },
-        className,
-      )}
-      {...restProps}
-    />
-  ),
+const Typography: ForwardRefRenderFunction<HTMLElement, TypographyProps> = (
+  {
+    Component = "p",
+    weight = "3",
+    plain = true,
+    caps = false,
+    className = "",
+    ...restProps
+  }: TypographyProps,
+  ref,
+) => (
+  <Component
+    ref={ref}
+    className={cn(
+      "Typography",
+      `Typography__wrapper--weight-${weight}`,
+      {
+        [`Typography__wrapper--plain`]: plain,
+        [`Typography__wrapper--caps`]: caps,
+      },
+      className,
+    )}
+    {...restProps}
+  />
 );
 
-export default Typography;
+export default forwardRef(Typography);

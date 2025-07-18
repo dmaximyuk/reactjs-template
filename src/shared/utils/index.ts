@@ -1,4 +1,2 @@
-export * from "./removeUnnecessary";
-export * from "./objectToArray";
-export * from "./generateUniqueId";
-export * from "./getRoute";
+export * from "./objectToArray/objectToArray";
+export * from "./generateUniqueId/generateUniqueId";

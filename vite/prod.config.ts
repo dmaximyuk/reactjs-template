@@ -11,7 +11,8 @@ export default (params: VITE_EXPORT_PARAMS) =>
     base: "/",
     build: {
       sourcemap: false,
-      cssCodeSplit: true,
+      cssCodeSplit: !params.mode.includes("insertcss"),
+      assetsInlineLimit: params.mode.includes("insertcss") ? 0 : undefined,
       cssMinify: "lightningcss",
       outDir: compilerOptions.outDir,
       minify: "terser",

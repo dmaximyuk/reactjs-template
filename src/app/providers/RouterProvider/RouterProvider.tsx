@@ -6,7 +6,7 @@ import { router } from "@/shared/lib/router";
 
 interface RouterProviderProps extends AllHTMLAttributes<HTMLElement> {}
 
-const RouterProvider: FC<RouterProviderProps> = (props) => {
+export const RouterProvider: FC<RouterProviderProps> = () => {
   return <P router={router} />;
 };
 

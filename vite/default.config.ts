@@ -9,6 +9,8 @@ import { compression } from "vite-plugin-compression2";
 import { analyzer } from "vite-bundle-analyzer";
 import autoprefixer from "autoprefixer";
 import cssnano from "cssnano";
+import { viteSingleFile } from "vite-plugin-singlefile";
+import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 
 import type { VITE_EXPORT_PARAMS } from "./types.config";
 
@@ -19,10 +21,15 @@ export default (params: VITE_EXPORT_PARAMS): InlineConfig => ({
     tsPaths(),
     core(),
     svgr(),
-    params.mode === "compress" &&
+    ViteImageOptimizer(),
+    (params.mode === "insertcss" || params.mode === "insertcss-compress") &&
+      viteSingleFile({
+        inlinePattern: ["**/*.css"],
+      }),
+    (params.mode === "compress" || params.mode === "insertcss-compress") &&
       compression({
-        algorithms: ["brotli"],
-        deleteOriginalAssets: true,
+        algorithms: ["gzip", "brotliCompress"],
+        deleteOriginalAssets: false,
         include: /\.(xml|css|json|js|ts|mjs|svg|yaml|yml|toml)$/,
       }),
     params.mode === "analyzer" && analyzer(),
