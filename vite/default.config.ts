@@ -13,6 +13,8 @@ import autoprefixer from "autoprefixer";
 import cssnano from "cssnano";
 import { viteSingleFile } from "vite-plugin-singlefile";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
+import { ViteMinifyPlugin } from "vite-plugin-minify";
+import Sitemap from "vite-plugin-sitemap";
 
 import type { VITE_EXPORT_PARAMS } from "./types";
 
@@ -24,6 +26,7 @@ export default (params: VITE_EXPORT_PARAMS): InlineConfig => {
     react(),
     svgr(),
     ViteImageOptimizer(),
+    ViteMinifyPlugin(),
     flags.inlineCss &&
       viteSingleFile({
         inlinePattern: ["**/*.css"],
@@ -35,6 +38,9 @@ export default (params: VITE_EXPORT_PARAMS): InlineConfig => {
         include: /\.(xml|css|json|js|ts|mjs|svg|yaml|yml|toml)$/,
       }),
     flags.analyze && analyzer(),
+    Sitemap({
+      hostname: "http://localhost:3000",
+    }),
   ].filter(Boolean);
 
   return {
