@@ -1,2 +1,1 @@
-npx lint-staged
-steiger --fail-on-warnings=0 ./src
+npx lint-staged && steiger --fail-on-warnings=0 ./src
