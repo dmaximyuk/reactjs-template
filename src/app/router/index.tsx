@@ -1,15 +1,17 @@
-import { createRootRoute, createRoute, Outlet } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import {
+  createRootRoute,
+  createRoute,
+  createRouter,
+} from "@tanstack/react-router";
 
-import { Home } from "@/pages";
+import { Home } from "@/pages/home";
+import { NotFound } from "@/pages/notFound";
+import { ErrorInterception } from "@/pages/errorInterception";
+
+import { RootLayout } from "@/shared/ui";
 
 const rootRoute = createRootRoute({
-  component: () => (
-    <>
-      <TanStackRouterDevtools />
-      <Outlet />
-    </>
-  ),
+  component: RootLayout,
 });
 
 const homeRoute = createRoute({
@@ -18,4 +20,16 @@ const homeRoute = createRoute({
   component: Home,
 });
 
-export const routeTree = rootRoute.addChildren([homeRoute]);
+const routeTree = rootRoute.addChildren([homeRoute]);
+
+export const router = createRouter({
+  routeTree,
+  defaultNotFoundComponent: NotFound,
+  defaultErrorComponent: ErrorInterception,
+});
+
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router;
+  }
+}

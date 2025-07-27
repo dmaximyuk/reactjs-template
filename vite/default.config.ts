@@ -1,8 +1,10 @@
+// vite/default.config.ts
+import { fileURLToPath } from "node:url";
 import { InlineConfig } from "vite";
 
-import { fileURLToPath } from "node:url";
+import { normalizeFlags } from "./utils";
 
-import core from "@vitejs/plugin-react-swc";
+import react from "@vitejs/plugin-react-swc";
 import svgr from "vite-plugin-svgr";
 import tsPaths from "vite-tsconfig-paths";
 import { compression } from "vite-plugin-compression2";
@@ -12,36 +14,42 @@ import cssnano from "cssnano";
 import { viteSingleFile } from "vite-plugin-singlefile";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 
-import type { VITE_EXPORT_PARAMS } from "./types.config";
+import type { VITE_EXPORT_PARAMS } from "./types";
 
-export default (params: VITE_EXPORT_PARAMS): InlineConfig => ({
-  appType: "spa",
-  publicDir: "public",
-  plugins: [
+export default (params: VITE_EXPORT_PARAMS): InlineConfig => {
+  const flags = normalizeFlags(params.mode);
+
+  const plugins = [
     tsPaths(),
-    core(),
+    react(),
     svgr(),
     ViteImageOptimizer(),
-    (params.mode === "insertcss" || params.mode === "insertcss-compress") &&
+    flags.inlineCss &&
       viteSingleFile({
         inlinePattern: ["**/*.css"],
       }),
-    (params.mode === "compress" || params.mode === "insertcss-compress") &&
+    flags.compress &&
       compression({
         algorithms: ["gzip", "brotliCompress"],
         deleteOriginalAssets: false,
         include: /\.(xml|css|json|js|ts|mjs|svg|yaml|yml|toml)$/,
       }),
-    params.mode === "analyzer" && analyzer(),
-  ],
-  resolve: {
-    alias: {
-      "~": fileURLToPath(new URL("../src/shared/styles", import.meta.url)),
+    flags.analyze && analyzer(),
+  ].filter(Boolean);
+
+  return {
+    appType: "spa",
+    publicDir: "public",
+    plugins,
+    resolve: {
+      alias: {
+        "~": fileURLToPath(new URL("../src/shared/styles", import.meta.url)),
+      },
     },
-  },
-  css: {
-    postcss: {
-      plugins: [autoprefixer(), cssnano()],
+    css: {
+      postcss: {
+        plugins: [autoprefixer(), cssnano()],
+      },
     },
-  },
-});
+  };
+};

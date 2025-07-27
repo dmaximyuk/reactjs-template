@@ -2,7 +2,7 @@ import { type FC, type AllHTMLAttributes } from "react";
 
 import { QueryClientProvider as P } from "@tanstack/react-query";
 
-import { queryClient } from "@/shared/lib/query";
+import { queryClient } from "@/shared/query";
 
 interface QueryClientProviderProps extends AllHTMLAttributes<HTMLElement> {}
 

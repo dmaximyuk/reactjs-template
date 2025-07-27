@@ -1,20 +1,16 @@
-import { type AllHTMLAttributes, type FC } from "react";
+import { type FC } from "react";
+import { type NotFoundRouteProps } from "@tanstack/react-router";
 
 import { i18n } from "@/shared/i18n";
 
 import { Section, Seo } from "@/shared/ui";
 
-interface HomeProps extends Omit<AllHTMLAttributes<HTMLElement>, ""> {}
+interface NotFoundProps extends NotFoundRouteProps {}
 
-const pageKey = "home";
+const pageKey = "notFound";
 
-const Home: FC<HomeProps> = () => {
+const NotFound: FC<NotFoundProps> = () => {
   const { t } = i18n;
-
-  /*
-   * add this for testing error boundary
-   * throw new Error("This error in components...");
-   * */
 
   const title = t(`${pageKey}.title.header`);
   const text = t(`${pageKey}.title.subheader`);
@@ -31,4 +27,4 @@ const Home: FC<HomeProps> = () => {
   );
 };
 
-export default Home;
+export default NotFound;

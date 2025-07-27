@@ -1,11 +1,11 @@
-import "@/shared/styles/main.sass";
+import "./app/styles/main.sass";
 
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 import { RouterProvider, QueryClientProvider } from "@/app/providers";
 
-import "@/shared/lib/i18n";
+import "./shared/i18n";
 
 const rootElement = document.getElementById("root")!;
 if (!rootElement.innerHTML) {

@@ -8,6 +8,7 @@ netlify
 .vinxi
 .Identifier
 .tanstack
+stats.html
 
 # Environment
 .env

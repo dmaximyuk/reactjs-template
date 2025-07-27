@@ -1,9 +1,14 @@
 import { defineConfig } from "vite";
 
+import path from "node:path";
+import { manualDeps } from "./utils";
+
 import defaultConfig from "./default.config";
 import { compilerOptions } from "../tsconfig.json";
 
-import type { VITE_EXPORT_PARAMS } from "./types.config";
+import packageJson from "../package.json";
+
+import type { VITE_EXPORT_PARAMS } from "./types";
 
 export default (params: VITE_EXPORT_PARAMS) =>
   defineConfig({
@@ -16,7 +21,8 @@ export default (params: VITE_EXPORT_PARAMS) =>
       cssMinify: "lightningcss",
       outDir: compilerOptions.outDir,
       minify: "terser",
-      manifest: false,
+      manifest: true,
+      reportCompressedSize: true,
       terserOptions: {
         maxWorkers: 2,
         compress: {
@@ -32,13 +38,17 @@ export default (params: VITE_EXPORT_PARAMS) =>
         treeshake: true,
         output: {
           experimentalMinChunkSize: 15_000,
-          chunkFileNames: "js/[hash].js",
-          entryFileNames: "js/[hash].js",
+          entryFileNames: "js/[name].[hash].js",
+          chunkFileNames: "js/[name].[hash].js",
           assetFileNames: (opt) => {
-            const [[, ext]] = Array.from(
-              opt!.name!.matchAll(/.([0-9-a-z]+)$/g),
-            );
-            return `${ext}/[hash].${ext}`;
+            const ext = path.extname(opt?.name || "").slice(1);
+            return ext ? `${ext}/[name].[hash].${ext}` : "assets/[name].[hash]";
+          },
+          manualChunks: {
+            vendor: [
+              ...manualDeps(packageJson.dependencies, ["react-dom"]),
+              "react-dom/client",
+            ],
           },
         },
       },
