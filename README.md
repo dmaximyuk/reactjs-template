@@ -1,104 +1,73 @@
-# React.js Project Template
+# ⚛️ React.js Template — Production-Ready Starter Kit
 
-## 🎯 Purpose  
-This template is designed for developers who want to quickly set up a React.js project with minimal hassle. It provides a clean, lightweight, and highly optimized starting point with full TypeScript support and Sass preprocessor, Redux and more.
-
----
-
-## 📸 Screenshots
-
-### Build analysis
-
-![Build Analysis Screenshot](repository/images/bundle.png)
+## 🎯 Purpose
+This template is designed for developers who want to kickstart a modern React.js project with a fully optimized setup. It includes everything needed for scalable application development — from FSD architecture routing, state management, and localization to a lightning-fast build powered by Vite and SWC.
 
 ## ✨ Features  
-- **Clean and Minimal**: No unnecessary files or configurations.  
-- **Optimized Build**: Lightweight and efficient output.  
-- **Fully Typed**: Comprehensive TypeScript support.  
-- **Sass Preprocessor**: Flexible and powerful styling with Sass.  
-- **Adaptability**: Easily adaptable to Next.js and Gatsby (tested with Gatsby).  
+1. 🧭 TanStack Router — modern, type-safe routing solution;
+2. ⚡ TanStack Query — powerful data fetching and caching layer;
+3. 🧠 TanStack Store — reactive state management with fine-grained control;
+4. 🌍 Intl API — full support for internationalization and locale handling;
+5. 📦 Build Analyzer — integrated bundle size visualization;
+6. 🧩 CSS Injection & Compression — CSS inlined into HTML (IF NEEDED) with Brotli/gzip compression support;
+7. ⚙️ SWC Compiler — blazing-fast transpilation for TypeScript and JavaScript;
+8. 🔍 ESLint + Prettier + Commitlint — strict code style enforcement out of the box;
+9. 🧪 Jest — preconfigured unit testing environment;
+10. 🐳 Docker + NGINX — robust deployment setup with containerization.
 
-## 📂 Project Structure  
+## 📂 Project Structure
+### Structure
 ```plaintext
-src/
-├── api/           // Axios setup for API calls and middleware
-├── assets/        // Icons, images, and other static assets
-├── components/    // Components built using the `uikit` library
-├── core/          // Application core, including pages
-├── locale/        // Translations for multi-language support
-├── routes/        // Router setup for page navigation
-├── store/         // Redux global state, using Saga and Toolkit
-├── styles/        // Global styles: resets, mixins, variables, fonts, layouts, etc.
-├── uikit/         // Small UI components for building larger components
-├── utils/         // Utility functions and helpers
-├── vars/          // Global project variables
-├── models/        // Global TypeScript types (e.g., themes, routing, etc.)
-├── index.tsx      // Application entry point
-└── vite-env.d.ts  // Vite environment settings with SVGR and default types
+├── .husky/        # Git hooks for commit quality
+├── src/
+│   ├── app/       # App initialization logic
+│   ├── entities/  # Domain entities and models
+│   ├── features/  # Feature-specific logic
+│   ├── pages/     # Application pages
+│   ├── shared/    # Shared components and utilities
+│   └── index.tsx  # Entry point
+├── vite/          # Vite-specific configuration
 ```
 
-## 🛠️ Technologies  
-This template uses the following tools and libraries:  
-- **React.js**: Core framework for building UI.  
-- **Redux (Toolkit, Saga)**: State management with support for side effects.  
-- **TypeScript**: Strict type safety and enhanced development experience.  
-- **Sass**: Preprocessor for styling.  
+### Analysis
 
-## ⚙️ Engine
-And what's under the hood?
-- **SWC**: which is faster than the usual build option  
-- **Plugins**: It took several days and about a year of experience to set up the collector perfectly so that you get the minimum build at the exit!
+![Build Analysis Screenshot](repository/images/bundle.png)
 
 ## 🚀 Quick Start  
 
 ### Prerequisites  
-- **Node.js**: Ensure you have Node.js (v20.17.x) installed.  
+- **Node.js**: Ensure you have Node.js >=22.17 installed.  
 
-### Installation  
-1. Clone the repository:  
-   ```bash
-   git clone <repository-url>
-   cd <project-directory>
-   ```
-2. Install dependencies:  
-   ```bash
-   npm install
-   ```
-3. Run the development server:  
-   ```bash
-   npm run dev
-   ```
-
-### Building for Production  
-To build the project for production, run:  
+### Installation
 ```bash
-npm run build
+git clone <repository-url>
+cd <project-directory>
+npm install
 ```
 
-## 💡 Key Highlights  
+### Start Development Server
+```bash
+npm run dev
+```
 
-### `uikit`  
-A collection of small, reusable components to streamline development of larger components.  
+### Build for Production
+```bash
+npm run build # <- default
+npm run build:insertcss # <- embed CSS in the head index.html
+npm run build:insertcss-compress # <- embed CSS in the head index.html and perform file compression
+npm run build:compress # <- perform file compression
+npm run build:analyzer # <- build and perform an analysis
+```
 
-### `store`  
-Includes Redux Toolkit setup with Saga for handling complex side effects.  
-
-### `styles`  
-Global styles directory with:  
-- **Reset and Default CSS**  
-- **Mixins and Variables**  
-- **Fonts and Layout Helpers**  
-
-### `locale`  
-Built-in support for localization and multi-language setups.  
-
-### Fully Customizable  
-Easily extendable for advanced configurations or integrations with frameworks like Next.js or Gatsby.  
+### Run Tests
+```bash
+npm run test
+```
 
 ## 📜 Code Standards  
-- **Strict TypeScript usage**: All code should be typed.  
-- **JSDoc Documentation**: Follow JSDoc format for documenting components and utilities.  
-- **Folder Structure**: Maintain the provided structure for consistency and readability.  
+- ✅ 100% TypeScript-first approach.
+- 🧩 Modular architecture with Feature-Sliced Design in mind.
+- ⚠️ It is strictly checked for compliance with ESLint and steiger (FSD) configuration standards
 
 ## 🙎️ Author / Contacts
 

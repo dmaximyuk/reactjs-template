@@ -1,6 +1,6 @@
 {
-  "name": "template",
-  "description": "A simple template for everyone!",
+  "name": "reactjs-template",
+  "description": "A simple React.js template for everyone!",
   "homepage": ".",
   "version": "0.0.0",
   "private": false,
@@ -11,16 +11,7 @@
     "email": "d_maksimyk@vk.com",
     "url": "https://github.com/dmaximyuk"
   },
-  "keywords": [
-    "template",
-    "react",
-    "@tanstack",
-    "typescript",
-    "javascript",
-    "sass",
-    "swc",
-    "fsd"
-  ],
+  "keywords": ["react", "template", "boilerplate", "fsd", "feature-sliced", "typescript", "javascript", "sass", "swc"],
   "engines": {
     "node": ">=22.17"
   },
