@@ -6,7 +6,7 @@
 # ⚛️ React.js Template — Production-Ready Starter Kit
 
 ## 🎯 Purpose
-This template is designed for developers who want to kickstart a modern React.js project with a fully optimized setup. It includes everything needed for scalable application development — from FSD architecture routing, state management, and localization to a lightning-fast build powered by Vite and SWC.
+This template is designed for developers who want to kickstart a modern React.js project with a fully optimized setup. It includes everything needed for scalable application development — from FSD architecture, routing, state management, and localization to a lightning-fast build powered by Vite and SWC.
 
 ## ✨ Features  
 1. 🧭 [TanStack Router](https://tanstack.com/router) — modern, type-safe routing solution;
@@ -59,8 +59,8 @@ npm run dev
 ```bash
 npm run build # <- default
 npm run build:insertcss # <- embed CSS in the head index.html
-npm run build:insertcss-compress # <- embed CSS in the head index.html and perform file compression
-npm run build:compress # <- perform file compression
+npm run build:insertcss-compress # <- embed CSS in the head index.html and perform files compression
+npm run build:compress # <- perform files compression
 npm run build:analyzer # <- build and perform an analysis
 ```
 
