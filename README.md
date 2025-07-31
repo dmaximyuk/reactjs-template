@@ -9,10 +9,10 @@
 This template is designed for developers who want to kickstart a modern React.js project with a fully optimized setup. It includes everything needed for scalable application development — from FSD architecture routing, state management, and localization to a lightning-fast build powered by Vite and SWC.
 
 ## ✨ Features  
-1. 🧭 TanStack Router — modern, type-safe routing solution;
-2. ⚡ TanStack Query — powerful data fetching and caching layer;
-3. 🧠 TanStack Store — reactive state management with fine-grained control;
-4. 🌍 Intl API — full support for internationalization and locale handling;
+1. 🧭 [TanStack Router](https://tanstack.com/router) — modern, type-safe routing solution;
+2. ⚡ T[anStack Query](https://tanstack.com/query) — powerful data fetching and caching layer;
+3. 🧠 [TanStack Store](https://tanstack.com/store) — reactive state management with fine-grained control;
+4. 🌍 [Intl API](https://www.npmjs.com/package/react-i18next) — full support for internationalization and locale handling;
 5. 📦 Build Analyzer — integrated bundle size visualization;
 6. 🧩 CSS Injection & Compression — CSS inlined into HTML (IF NEEDED) with Brotli/gzip compression support;
 7. ⚙️ SWC Compiler — blazing-fast transpilation for TypeScript and JavaScript;
