@@ -1,3 +1,8 @@
+<!-- For GitHub Pages/Vercel -->
+<meta name="description" content="FSD React Template: Feature-Sliced Design boilerplate for React">
+<meta name="keywords" content="fsd, react template, feature sliced design, react boilerplate">
+<!-- ======================= -->
+
 # ⚛️ React.js Template — Production-Ready Starter Kit
 
 ## 🎯 Purpose
