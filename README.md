@@ -10,7 +10,7 @@ This template is designed for developers who want to kickstart a modern React.js
 
 ## ✨ Features  
 1. 🧭 [TanStack Router](https://tanstack.com/router) — modern, type-safe routing solution;
-2. ⚡ T[anStack Query](https://tanstack.com/query) — powerful data fetching and caching layer;
+2. ⚡ [TanStack Query](https://tanstack.com/query) — powerful data fetching and caching layer;
 3. 🧠 [TanStack Store](https://tanstack.com/store) — reactive state management with fine-grained control;
 4. 🌍 [Intl API](https://www.npmjs.com/package/react-i18next) — full support for internationalization and locale handling;
 5. 📦 Build Analyzer — integrated bundle size visualization;
