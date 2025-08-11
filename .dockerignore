@@ -4,7 +4,6 @@
 .vs
 .tanstack
 .vite
-.env
 build
 dist
 node_modules

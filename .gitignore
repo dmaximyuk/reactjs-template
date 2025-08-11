@@ -8,16 +8,12 @@ netlify
 .vinxi
 .Identifier
 .tanstack
+.vite
+.vs
 stats.html
-
-# Environment
 .env
 .env*.local
-
-# dependencies
 /node_modules
-
-# IDEs and editors
 /.idea
 .project
 .classpath
@@ -25,10 +21,6 @@ stats.html
 .settings/
 .code
 .vscode
-
-# Temp
 gitignore
-
-# System Files
 .DS_Store
 Thumbs.db
