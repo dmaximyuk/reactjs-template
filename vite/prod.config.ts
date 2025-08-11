@@ -21,7 +21,7 @@ export default (params: VITE_EXPORT_PARAMS) =>
       cssMinify: "lightningcss",
       outDir: compilerOptions.outDir,
       minify: "terser",
-      manifest: true,
+      manifest: false,
       reportCompressedSize: true,
       terserOptions: {
         maxWorkers: 2,
