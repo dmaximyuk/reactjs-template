@@ -9,9 +9,9 @@ const RootLayout: FC<RootLayoutProps> = () => {
   return (
     <div className={"root-layout"}>
       <Header />
-      <main className={"root-layout__main"}>
+      <div className={"root-layout__main"}>
         <Outlet />
-      </main>
+      </div>
     </div>
   );
 };

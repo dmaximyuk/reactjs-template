@@ -17,8 +17,6 @@ const Seo: FC<SeoProps> = (props) => {
 
   return (
     <>
-      <html lang={lang || "en"} />
-
       <title>{title}</title>
       <meta name="description" content={description} />
 

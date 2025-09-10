@@ -1,4 +1,4 @@
-import "@/app/styles/main.sass";
+import "./styles/main.sass";
 
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";

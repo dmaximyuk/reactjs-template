@@ -10,12 +10,12 @@ interface HeaderProps extends Omit<AllHTMLAttributes<HTMLElement>, ""> {}
 
 const Header: FC<HeaderProps> = () => {
   return (
-    <nav className="Header">
+    <nav className="header">
       <Link to={"/"} replace={true}>
         <h2>Its Header</h2>
       </Link>
 
-      <ul className="Header__links">
+      <ul className="header__links">
         {NAV_LINKS.map((v) => (
           <li key={v.to + v.label}>
             <Link to={v.to}>
