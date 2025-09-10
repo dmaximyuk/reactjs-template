@@ -5,7 +5,6 @@ export const uuid = (): string => {
   const RANDOM_END_INDEX = 10;
 
   const timestamp = Date.now().toString(TIMESTAMP_RADIX);
-  // eslint-disable-next-line sonarjs/pseudo-random
   const random = Math.random()
     .toString(RANDOM_RADIX)
     .substring(RANDOM_START_INDEX, RANDOM_END_INDEX);

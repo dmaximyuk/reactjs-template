@@ -1,4 +1,4 @@
-export const navLinks = [
+export const NAV_LINKS = [
   {
     to: "/the",
     label: "The",

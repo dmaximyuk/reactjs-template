@@ -1,44 +1,33 @@
+import { defineConfig } from "eslint/config";
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+
 import js from "@eslint/js";
 import globals from "globals";
 import tsEslint from "typescript-eslint";
-import { defineConfig } from "eslint/config";
 
-import pluginReact from "eslint-plugin-react";
-import pluginImport from "eslint-plugin-import";
 import pluginA11y from "eslint-plugin-jsx-a11y";
-import pluginPrettier from "eslint-plugin-prettier/recommended";
 import pluginHooks from "eslint-plugin-react-hooks";
-import pluginPreferArrowFunctions from "eslint-plugin-prefer-arrow-functions";
+import pluginImport from "eslint-plugin-import";
 import pluginJest from "eslint-plugin-jest";
+import pluginPrettier from "eslint-plugin-prettier/recommended";
+import pluginReact from "eslint-plugin-react";
 import pluginSonar from "eslint-plugin-sonarjs";
+import unicorn from "eslint-plugin-unicorn";
 
-/** @type {import('eslint').Linter.Config}*/
+/** @type {import('eslint').Linter.Config} */
 export default defineConfig([
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
     plugins: { js },
     extends: ["js/recommended"],
   },
+
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
     languageOptions: { globals: globals.browser },
   },
-  {
-    plugins: {
-      "prefer-arrow": pluginPreferArrowFunctions,
-    },
-    rules: {
-      "prefer-arrow/prefer-arrow-functions": [
-        "error",
-        {
-          disallowPrototype: true,
-          singleReturnOnly: false,
-          classPropertiesAllowed: false,
-        },
-      ],
-      "no-restricted-syntax": "error",
-    },
-  },
+
   tsEslint.configs.recommended,
   pluginReact.configs.flat.recommended,
   pluginPrettier,
@@ -47,19 +36,45 @@ export default defineConfig([
   pluginJest.configs["flat/recommended"],
   pluginHooks.configs["recommended-latest"],
   pluginSonar.configs.recommended,
+
   {
+    languageOptions: {
+      parserOptions: {
+        project: "./tsconfig.json",
+        tsconfigRootDir: dirname(fileURLToPath(import.meta.url)),
+      },
+      globals: globals.browser,
+    },
+    plugins: { unicorn },
     rules: {
-      "react/react-in-jsx-scope": "off",
-      "@typescript-eslint/no-empty-object-type": "off",
-      "sonarjs/pseudo-random": "warn",
-      "no-console": "error",
-      "no-debugger": "error",
-      "no-alert": "error",
-      "@typescript-eslint/prefer-enum-initializers": "error",
-      "@typescript-eslint/no-unsafe-unary-minus": "off",
-      "@typescript-eslint/prefer-for-of": "error",
+      curly: ["error", "all"],
+      complexity: ["warn", 10],
+      "default-case": "error",
       "default-param-last": "off",
+      eqeqeq: ["error", "always"],
+      "max-depth": ["warn", 8],
+      "max-lines": ["warn", 300],
+      "max-statements": ["warn", 20],
+      "no-alert": "error",
+      "no-console": ["error", { allow: ["warn", "error", "debug"] }],
+      "no-debugger": "error",
+      "no-else-return": "error",
+      "no-implicit-coercion": "error",
+      "no-implied-eval": "error",
+      "no-magic-numbers": "off",
+      "no-nested-ternary": "error",
+      "no-param-reassign": "error",
+      "no-undef": "error",
+      "no-var": "error",
+      "prefer-const": ["error", { destructuring: "all" }],
+      "prefer-template": "error",
+
       "@typescript-eslint/default-param-last": "error",
+      "@typescript-eslint/no-empty-object-type": "off",
+      "@typescript-eslint/no-explicit-any": "error",
+      "@typescript-eslint/no-unsafe-call": "error",
+      "@typescript-eslint/no-unsafe-member-access": "error",
+      "@typescript-eslint/no-unsafe-unary-minus": "off",
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
@@ -70,30 +85,28 @@ export default defineConfig([
           varsIgnorePattern: "^_",
         },
       ],
-      "no-undef": "error",
-      eqeqeq: ["error", "always"],
-      curly: ["error", "all"],
-      "no-var": "error",
-      "prefer-const": ["error", { destructuring: "all" }],
-      "no-implicit-coercion": "error",
-      "no-magic-numbers": "off",
-      complexity: ["warn", 8],
-      "max-depth": ["warn", 4],
-      "max-lines": ["warn", 300],
-      "max-params": ["warn", 4],
-      "max-statements": ["warn", 20],
-      "no-nested-ternary": "error",
-      "no-else-return": "error",
-      "default-case": "error",
+      "@typescript-eslint/prefer-enum-initializers": "off",
+
+      "react/react-in-jsx-scope": "off",
+
+      "import/no-cycle": "error",
+      "import/no-mutable-exports": "error",
+
+      "sonarjs/pseudo-random": "off",
+
+      "unicorn/no-for-loop": "off",
+      "unicorn/no-null": "off",
+      "unicorn/prefer-optional-catch-binding": "error",
+      "unicorn/prefer-top-level-await": "off",
     },
   },
+
   { ignores: ["./*", "!./src", "!./public"] },
+
   {
     settings: {
       "import/resolver": {
-        typescript: {
-          project: "./tsconfig.json",
-        },
+        typescript: { project: "./tsconfig.json" },
       },
     },
   },
