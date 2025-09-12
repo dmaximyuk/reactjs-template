@@ -11,7 +11,7 @@ This template is designed for developers who want to kickstart a modern React.js
 ## ✨ Features  
 1. 🧭 [TanStack Router](https://tanstack.com/router) — modern, type-safe routing solution;
 2. ⚡ [TanStack Query](https://tanstack.com/query) — powerful data fetching and caching layer;
-3. 🧠 [TanStack Store](https://tanstack.com/store) — reactive state management with fine-grained control;
+3. 🧠 [Zustand](https://github.com/pmndrs/zustand) — a small, fast and scalable bearbones state-management solution using simplified flux principles;
 4. 🌍 [Intl API](https://www.npmjs.com/package/react-i18next) — full support for internationalization and locale handling;
 5. 📦 Build Analyzer — integrated bundle size visualization;
 6. 🧩 CSS Injection & Compression — CSS inlined into HTML (IF NEEDED) with Brotli/gzip compression support;
@@ -29,8 +29,7 @@ This template is designed for developers who want to kickstart a modern React.js
 │   ├── entities/  # Domain entities and models
 │   ├── features/  # Feature-specific logic
 │   ├── pages/     # Application pages
-│   ├── shared/    # Shared components and utilities
-│   └── index.tsx  # Entry point
+│   └── shared/    # Shared components and utilities
 ├── vite/          # Vite-specific configuration
 ```
 

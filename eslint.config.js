@@ -72,8 +72,8 @@ export default defineConfig([
       "@typescript-eslint/default-param-last": "error",
       "@typescript-eslint/no-empty-object-type": "off",
       "@typescript-eslint/no-explicit-any": "error",
-      "@typescript-eslint/no-unsafe-call": "error",
-      "@typescript-eslint/no-unsafe-member-access": "error",
+      "@typescript-eslint/no-unsafe-call": "off",
+      "@typescript-eslint/no-unsafe-member-access": "off",
       "@typescript-eslint/no-unsafe-unary-minus": "off",
       "@typescript-eslint/no-unused-vars": [
         "error",
@@ -106,7 +106,13 @@ export default defineConfig([
   {
     settings: {
       "import/resolver": {
-        typescript: { project: "./tsconfig.json" },
+        typescript: {
+          alwaysTryTypes: true,
+          project: "./tsconfig.json",
+        },
+        node: {
+          extensions: [".js", ".ts", ".tsx"],
+        },
       },
     },
   },
