@@ -1,6 +1,4 @@
 export type BuildMode =
-  | "insertcss"
-  | "insertcss-compress"
   | "compress"
   | "analyzer"
   | "default";

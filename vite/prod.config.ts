@@ -1,12 +1,9 @@
 import { defineConfig } from "vite";
 
 import path from "node:path";
-import { manualDeps } from "./utils";
 
 import defaultConfig from "./default.config";
 import { compilerOptions } from "../tsconfig.json";
-
-import packageJson from "../package.json";
 
 import type { VITE_EXPORT_PARAMS } from "./types";
 
@@ -16,8 +13,7 @@ export default (params: VITE_EXPORT_PARAMS) =>
     base: "/",
     build: {
       sourcemap: false,
-      cssCodeSplit: !params.mode.includes("insertcss"),
-      assetsInlineLimit: params.mode.includes("insertcss") ? 0 : undefined,
+      cssCodeSplit: false,
       cssMinify: "lightningcss",
       outDir: compilerOptions.outDir,
       minify: "terser",
@@ -45,14 +41,6 @@ export default (params: VITE_EXPORT_PARAMS) =>
             const ext = path.extname(opt?.name || "").slice(1);
             return ext ? `${ext}/[name].[hash].${ext}` : "assets/[name].[hash]";
           },
-          manualChunks: !params.mode.includes("insertcss")
-            ? {
-                vendor: [
-                  ...manualDeps(packageJson.dependencies, ["react-dom"]),
-                  "react-dom/client",
-                ],
-              }
-            : undefined,
         },
       },
     },

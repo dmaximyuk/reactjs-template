@@ -1,119 +1,116 @@
 import { defineConfig } from "eslint/config";
-import { dirname } from "node:path";
-import { fileURLToPath } from "node:url";
-
 import js from "@eslint/js";
+import tseslint from "typescript-eslint";
 import globals from "globals";
-import tsEslint from "typescript-eslint";
-
-import pluginA11y from "eslint-plugin-jsx-a11y";
-import pluginHooks from "eslint-plugin-react-hooks";
+import prettierConfig from "eslint-config-prettier";
+import unusedImports from "eslint-plugin-unused-imports";
+import react from "eslint-plugin-react";
+import reactHooks from "eslint-plugin-react-hooks";
+import jsxA11y from "eslint-plugin-jsx-a11y";
+import reactRefresh from "eslint-plugin-react-refresh";
+import pluginQuery from "@tanstack/eslint-plugin-query";
 import pluginImport from "eslint-plugin-import";
-import pluginJest from "eslint-plugin-jest";
-import pluginPrettier from "eslint-plugin-prettier/recommended";
-import pluginReact from "eslint-plugin-react";
-import pluginSonar from "eslint-plugin-sonarjs";
-import unicorn from "eslint-plugin-unicorn";
 
-/** @type {import('eslint').Linter.Config} */
+/** @type {import("eslint").Linter.FlatConfig[]} */
 export default defineConfig([
   {
-    files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
-    plugins: { js },
-    extends: ["js/recommended"],
+    ignores: [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.next/**",
+      "**/coverage/**",
+    ],
   },
 
-  {
-    files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
-    languageOptions: { globals: globals.browser },
-  },
-
-  tsEslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
-  pluginPrettier,
-  pluginImport.flatConfigs.recommended,
-  pluginA11y.flatConfigs.recommended,
-  pluginJest.configs["flat/recommended"],
-  pluginHooks.configs["recommended-latest"],
-  pluginSonar.configs.recommended,
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
 
   {
+    files: ["**/*.{js,jsx,ts,tsx}"],
     languageOptions: {
-      parserOptions: {
-        project: "./tsconfig.json",
-        tsconfigRootDir: dirname(fileURLToPath(import.meta.url)),
+      ecmaVersion: "latest",
+      sourceType: "module",
+      globals: {
+        ...globals.browser,
+        ...globals.es2021,
       },
-      globals: globals.browser,
     },
-    plugins: { unicorn },
-    rules: {
-      curly: ["error", "all"],
-      complexity: ["warn", 10],
-      "default-case": "error",
-      "default-param-last": "off",
-      eqeqeq: ["error", "always"],
-      "max-depth": ["warn", 8],
-      "max-lines": ["warn", 300],
-      "max-statements": ["warn", 20],
-      "no-alert": "error",
-      "no-console": ["error", { allow: ["warn", "error", "debug"] }],
-      "no-debugger": "error",
-      "no-else-return": "error",
-      "no-implicit-coercion": "error",
-      "no-implied-eval": "error",
-      "no-magic-numbers": "off",
-      "no-nested-ternary": "error",
-      "no-param-reassign": "error",
-      "no-undef": "error",
-      "no-var": "error",
-      "prefer-const": ["error", { destructuring: "all" }],
-      "prefer-template": "error",
-
-      "@typescript-eslint/default-param-last": "error",
-      "@typescript-eslint/no-empty-object-type": "off",
-      "@typescript-eslint/no-explicit-any": "error",
-      "@typescript-eslint/no-unsafe-call": "off",
-      "@typescript-eslint/no-unsafe-member-access": "off",
-      "@typescript-eslint/no-unsafe-unary-minus": "off",
-      "@typescript-eslint/no-unused-vars": [
-        "error",
-        {
-          vars: "all",
-          args: "after-used",
-          ignoreRestSiblings: false,
-          argsIgnorePattern: "^_",
-          varsIgnorePattern: "^_",
+    plugins: {
+      react,
+      "unused-imports": unusedImports,
+      "react-hooks": reactHooks,
+      "@tanstack/query": pluginQuery,
+      import: pluginImport,
+    },
+    settings: {
+      react: { version: "detect" },
+      "import/resolver": {
+        typescript: {
+          project: ["./tsconfig.json"],
         },
-      ],
-      "@typescript-eslint/prefer-enum-initializers": "off",
+        node: {
+          extensions: [".js", ".jsx", ".ts", ".tsx"],
+        },
+      },
+    },
+    rules: {
+      eqeqeq: ["error", "always"],
+      "no-debugger": "error",
+      "no-alert": "error",
 
-      "react/react-in-jsx-scope": "off",
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "off",
+      "@typescript-eslint/no-empty-object-type": "off",
 
+      "import/no-unresolved": "error",
       "import/no-cycle": "error",
       "import/no-mutable-exports": "error",
 
-      "sonarjs/pseudo-random": "off",
+      "unused-imports/no-unused-imports": "error",
+      "unused-imports/no-unused-vars": [
+        "warn",
+        {
+          vars: "all",
+          varsIgnorePattern: "^_",
+          args: "after-used",
+          argsIgnorePattern: "^_",
+          ignoreRestSiblings: true,
+        },
+      ],
 
-      "unicorn/no-for-loop": "off",
-      "unicorn/no-null": "off",
-      "unicorn/prefer-optional-catch-binding": "error",
-      "unicorn/prefer-top-level-await": "off",
+      "no-console": ["warn", { allow: ["warn", "error"] }],
+
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+
+      "react/react-in-jsx-scope": "off",
+      "react/prop-types": "off",
+
+      "@tanstack/query/exhaustive-deps": "warn",
+      "@tanstack/query/no-rest-destructuring": "warn",
+      "@tanstack/query/stable-query-client": "error",
     },
   },
-
-  { ignores: ["./*", "!./src", "!./public"] },
 
   {
-    settings: {
-      "import/resolver": {
-        typescript: {
-          alwaysTryTypes: true,
-          project: "./tsconfig.json",
-        },
-        node: {
-          extensions: [".js", ".ts", ".tsx"],
-        },
-      },
+    files: ["**/*.{jsx,tsx}"],
+    plugins: { "react-refresh": reactRefresh },
+    rules: {
+      "react-refresh/only-export-components": "warn",
     },
   },
+
+  {
+    files: ["**/*.{jsx,tsx}"],
+    plugins: { "jsx-a11y": jsxA11y },
+    rules: {
+      ...jsxA11y.flatConfigs.recommended.rules,
+      "jsx-a11y/click-events-have-key-events": "warn",
+      "jsx-a11y/no-static-element-interactions": "warn",
+      "jsx-a11y/no-noninteractive-element-interactions": "warn",
+    },
+  },
+
+  prettierConfig,
 ]);

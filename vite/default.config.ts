@@ -1,4 +1,3 @@
-// vite/default.config.ts
 import { fileURLToPath } from "node:url";
 import { InlineConfig } from "vite";
 
@@ -11,7 +10,7 @@ import { compression } from "vite-plugin-compression2";
 import { analyzer } from "vite-bundle-analyzer";
 import autoprefixer from "autoprefixer";
 import cssnano from "cssnano";
-import { viteSingleFile } from "vite-plugin-singlefile";
+import { imagetools } from "vite-imagetools";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 import { ViteMinifyPlugin } from "vite-plugin-minify";
 
@@ -24,12 +23,20 @@ export default (params: VITE_EXPORT_PARAMS): InlineConfig => {
     tsPaths(),
     react(),
     svgr(),
+    imagetools({
+      defaultDirectives: (url) => {
+        if (/\.(png|jpe?g)$/i.test(url.pathname.toLowerCase())) {
+          return new URLSearchParams({
+            format: "webp",
+            quality: "80",
+          });
+        }
+
+        return new URLSearchParams();
+      },
+    }),
     ViteImageOptimizer(),
     ViteMinifyPlugin(),
-    flags.inlineCss &&
-      viteSingleFile({
-        inlinePattern: ["**/*.css"],
-      }),
     flags.compress &&
       compression({
         algorithms: ["gzip", "brotliCompress"],
