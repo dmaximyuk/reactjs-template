@@ -12,13 +12,17 @@ This template is designed for developers who want to kickstart a modern React.js
 1. 🧭 [TanStack Router](https://tanstack.com/router) — modern, type-safe routing solution;
 2. ⚡ [TanStack Query](https://tanstack.com/query) — powerful data fetching and caching layer;
 3. 🧠 [Zustand](https://github.com/pmndrs/zustand) — a small, fast and scalable bearbones state-management solution using simplified flux principles;
-4. 🌍 [Intl API](https://www.npmjs.com/package/react-i18next) — full support for internationalization and locale handling;
-5. 📦 Build Analyzer — integrated bundle size visualization;
-6. 🧩 CSS Injection & Compression — CSS inlined into HTML (IF NEEDED) with Brotli/gzip compression support;
-7. ⚙️ SWC Compiler — blazing-fast transpilation for TypeScript and JavaScript;
-8. 🔍 ESLint + Prettier + Commitlint — strict code style enforcement out of the box;
-9. 🧪 Jest — preconfigured unit testing environment;
-10. 🐳 Docker + NGINX — robust deployment setup with containerization.
+4. 🌍 [i18next](https://www.npmjs.com/package/react-i18next) — full support for internationalization and locale handling;
+5. 📦 Build Analyzer — integrated bundle size visualization with vite-bundle-analyzer;
+6. 🗜️ File Compression — Brotli and Gzip compression support for static assets;
+7. 🖼️ Image Optimization — automatic WebP conversion and image optimization via vite-imagetools and vite-plugin-image-optimizer;
+8. ⚙️ SWC Compiler — blazing-fast transpilation for TypeScript and JavaScript via @vitejs/plugin-react-swc;
+9. 🎨 LightningCSS — ultra-fast CSS minification and processing;
+10. 💅 SASS — powerful CSS preprocessor for styling;
+11. 🔧 Terser — advanced JavaScript minification with configurable optimization levels;
+12. 🔍 ESLint + Prettier + Commitlint — strict code style enforcement out of the box;
+13. 🧪 Jest — preconfigured unit testing environment with Testing Library;
+14. 🐳 Docker + NGINX — robust deployment setup with containerization.
 
 ## 📂 Project Structure
 ### Structure
@@ -40,38 +44,72 @@ This template is designed for developers who want to kickstart a modern React.js
 ## 🚀 Quick Start  
 
 ### Prerequisites  
-- **Node.js**: Ensure you have Node.js >=22.17 installed.  
+- **Node.js**: Ensure you have Node.js >=24.12 installed.  
+- **Package Manager**: pnpm (recommended) or npm
 
 ### Installation
 ```bash
 git clone <repository-url>
 cd <project-directory>
+pnpm install
+# or
 npm install
 ```
 
 ### Start Development Server
 ```bash
+pnpm run dev
+# or
 npm run dev
 ```
 
 ### Build for Production
 ```bash
-npm run build # <- default
-npm run build:insertcss # <- embed CSS in the head index.html
-npm run build:insertcss-compress # <- embed CSS in the head index.html and perform files compression
-npm run build:compress # <- perform files compression
-npm run build:analyzer # <- build and perform an analysis
+# Standard build with type checking
+pnpm run build
+
+# Build with file compression (gzip + brotli)
+pnpm run build:compress
+
+# Build with bundle analyzer
+pnpm run build:analyzer
+
+# Build with compression and analyzer
+pnpm run build:compress-analyzer
 ```
 
 ### Run Tests
 ```bash
-npm run test
+pnpm run test
+```
+
+### Code Quality
+```bash
+# Lint code
+pnpm run lint
+
+# Fix linting issues
+pnpm run lint:fix
+
+# Format code
+pnpm run format
+
+# Check TypeScript types
+pnpm run typecheck
+```
+
+### Preview Production Build
+```bash
+pnpm run serve
 ```
 
 ## 📜 Code Standards  
-- ✅ 100% TypeScript-first approach.
-- 🧩 Modular architecture with Feature-Sliced Design in mind.
-- ⚠️ It is strictly checked for compliance with ESLint and steiger (FSD) configuration standards
+- ✅ 100% TypeScript-first approach with strict type checking
+- 🧩 Modular architecture following Feature-Sliced Design (FSD) principles
+- ⚠️ Strict compliance with ESLint and Steiger (FSD) configuration standards
+- 🎯 Arrow functions preferred for JavaScript/TypeScript code
+- 🧹 SOLID and KISS principles adherence
+- 🚫 No unused code or comments in production code
 
 ## 🙎️ Author / Contacts
 

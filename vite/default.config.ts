@@ -1,8 +1,6 @@
 import { fileURLToPath } from "node:url";
 import { InlineConfig } from "vite";
 
-import { normalizeFlags } from "./utils";
-
 import react from "@vitejs/plugin-react-swc";
 import svgr from "vite-plugin-svgr";
 import tsPaths from "vite-tsconfig-paths";
@@ -14,10 +12,9 @@ import { imagetools } from "vite-imagetools";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 import { ViteMinifyPlugin } from "vite-plugin-minify";
 
-import type { VITE_EXPORT_PARAMS } from "./types";
-
-export default (params: VITE_EXPORT_PARAMS): InlineConfig => {
-  const flags = normalizeFlags(params.mode);
+export default (): InlineConfig => {
+  const isCompress = process.env.BUILD_COMPRESS === "true";
+  const isAnalyze = process.env.BUILD_ANALYZE === "true";
 
   const plugins = [
     tsPaths(),
@@ -37,13 +34,14 @@ export default (params: VITE_EXPORT_PARAMS): InlineConfig => {
     }),
     ViteImageOptimizer(),
     ViteMinifyPlugin(),
-    flags.compress &&
+    isCompress &&
       compression({
         algorithms: ["gzip", "brotliCompress"],
         deleteOriginalAssets: false,
-        include: /\.(xml|css|json|js|ts|mjs|svg|yaml|yml|toml)$/,
+        include: /\.(xml|css|json|js|ts|mjs|svg|yaml|yml|toml|html|txt|woff|woff2|ttf|eot)$/,
+        threshold: 0,
       }),
-    flags.analyze && analyzer(),
+    isAnalyze && analyzer(),
   ].filter(Boolean);
 
   return {

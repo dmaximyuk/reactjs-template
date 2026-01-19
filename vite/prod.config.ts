@@ -5,11 +5,11 @@ import path from "node:path";
 import defaultConfig from "./default.config";
 import { compilerOptions } from "../tsconfig.json";
 
-import type { VITE_EXPORT_PARAMS } from "./types";
+export default () => {
+  const isCompressMode = process.env.BUILD_COMPRESS === "true";
 
-export default (params: VITE_EXPORT_PARAMS) =>
-  defineConfig({
-    ...defaultConfig(params),
+  return defineConfig({
+    ...defaultConfig(),
     base: "/",
     build: {
       sourcemap: false,
@@ -20,11 +20,15 @@ export default (params: VITE_EXPORT_PARAMS) =>
       manifest: false,
       reportCompressedSize: true,
       terserOptions: {
-        maxWorkers: 2,
+        maxWorkers: isCompressMode ? 4 : 2,
         compress: {
           drop_debugger: true,
           drop_console: true,
-          passes: 3,
+          passes: isCompressMode ? 5 : 3,
+          pure_funcs: isCompressMode ? ["console.log", "console.info", "console.debug"] : [],
+          unsafe: isCompressMode,
+          unsafe_comps: isCompressMode,
+          unsafe_math: isCompressMode,
         },
         format: {
           comments: false,
@@ -34,7 +38,6 @@ export default (params: VITE_EXPORT_PARAMS) =>
         treeshake: true,
         output: {
           inlineDynamicImports: false,
-          experimentalMinChunkSize: 15_000,
           entryFileNames: "js/[name].[hash].js",
           chunkFileNames: "js/[name].[hash].js",
           assetFileNames: (opt) => {
@@ -45,3 +48,4 @@ export default (params: VITE_EXPORT_PARAMS) =>
       },
     },
   });
+};

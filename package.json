@@ -28,9 +28,10 @@
   "scripts": {
     "dev": "vite --host",
     "test": "jest",
-    "build": "vite build",
-    "build:compress": "vite build --mode compress",
-    "build:analyzer": "vite build --mode analyzer",
+    "build": "tsc --noEmit && vite build",
+    "build:compress": "tsc --noEmit && BUILD_COMPRESS=true vite build",
+    "build:analyzer": "BUILD_ANALYZE=true vite build",
+    "build:compress-analyzer": "BUILD_COMPRESS=true BUILD_ANALYZE=true vite build",
     "serve": "vite preview",
     "deploy": "gh-pages -d ./dist",
     "update": "ncu -u && npm install",
