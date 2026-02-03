@@ -25,10 +25,7 @@ export default () => {
           drop_debugger: true,
           drop_console: true,
           passes: isCompressMode ? 5 : 3,
-          pure_funcs: isCompressMode ? ["console.log", "console.info", "console.debug"] : [],
-          unsafe: isCompressMode,
-          unsafe_comps: isCompressMode,
-          unsafe_math: isCompressMode,
+          pure_funcs: ["console.log", "console.info", "console.debug"],
         },
         format: {
           comments: false,
