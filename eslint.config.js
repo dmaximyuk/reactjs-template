@@ -11,7 +11,7 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import pluginQuery from "@tanstack/eslint-plugin-query";
 import pluginImport from "eslint-plugin-import";
 
-/** @type {import("eslint").Linter.FlatConfig[]} */
+/** @type {import("eslint/config").Config[]} */
 export default defineConfig([
   {
     ignores: [

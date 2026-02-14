@@ -12,11 +12,7 @@ const LargeTitle: FC<LargeTitleProps> = ({
   Component = "h1",
   ...props
 }) => (
-  <Typography
-    {...props}
-    Component={Component}
-    className={cn("LargeTitle", className)}
-  />
+  <Typography {...props} Component={Component} className={cn("LargeTitle", className)} />
 );
 
 export default LargeTitle;

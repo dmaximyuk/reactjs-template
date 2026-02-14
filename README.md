@@ -1,124 +1,126 @@
-<!-- For GitHub Pages/Vercel -->
-<meta name="description" content="FSD React Template: Feature-Sliced Design boilerplate for React">
-<meta name="keywords" content="fsd, react template, feature sliced design, react boilerplate">
-<!-- ======================= -->
+# React.js Template
 
-# ⚛️ React.js Template — Production-Ready Starter Kit
+Starter template for React apps: FSD, TypeScript, Vite. Minimal dependencies, production-ready build and Docker deploy.
 
-## 🎯 Purpose
-This template is designed for developers who want to kickstart a modern React.js project with a fully optimized setup. It includes everything needed for scalable application development — from FSD architecture, routing, state management, and localization to a lightning-fast build powered by Vite and SWC.
+## Stack
 
-## ✨ Features  
-1. 🧭 [TanStack Router](https://tanstack.com/router) — modern, type-safe routing solution;
-2. ⚡ [TanStack Query](https://tanstack.com/query) — powerful data fetching and caching layer;
-3. 🧠 [Zustand](https://github.com/pmndrs/zustand) — a small, fast and scalable bearbones state-management solution using simplified flux principles;
-4. 🌍 [i18next](https://www.npmjs.com/package/react-i18next) — full support for internationalization and locale handling;
-5. 📦 Build Analyzer — integrated bundle size visualization with vite-bundle-analyzer;
-6. 🗜️ File Compression — Brotli and Gzip compression support for static assets;
-7. 🖼️ Image Optimization — automatic WebP conversion and image optimization via vite-imagetools and vite-plugin-image-optimizer;
-8. ⚙️ SWC Compiler — blazing-fast transpilation for TypeScript and JavaScript via @vitejs/plugin-react-swc;
-9. 🎨 LightningCSS — ultra-fast CSS minification and processing;
-10. 💅 SASS — powerful CSS preprocessor for styling;
-11. 🔧 Terser — advanced JavaScript minification with configurable optimization levels;
-12. 🔍 ESLint + Prettier + Commitlint — strict code style enforcement out of the box;
-13. 🧪 Jest — preconfigured unit testing environment with Testing Library;
-14. 🐳 Docker + NGINX — robust deployment setup with containerization.
+- **React 19** + **TypeScript** (strict)
+- **Vite 7** + **SWC** — build and transpilation
+- **TanStack Router** — routing
+- **TanStack Query** — requests and cache
+- **Zustand** — state
+- **i18next** — i18n
+- **Valibot** — validation
+- **Ky** — HTTP client
+- **SASS/SCSS** + **LightningCSS** — styles
+- **Jest** + **Testing Library** — tests
+- **ESLint** + **Prettier** + **Commitlint** + **Husky** — lint and commits
+- **Docker** + **NGINX** — deploy
 
-## 📂 Project Structure
-### Structure
-```plaintext
-├── .husky/        # Git hooks for commit quality
-├── src/
-│   ├── app/       # App initialization logic
-│   ├── entities/  # Domain entities and models
-│   ├── features/  # Feature-specific logic
-│   ├── pages/     # Application pages
-│   └── shared/    # Shared components and utilities
-├── vite/          # Vite-specific configuration
+## Structure (FSD)
+
+```
+src/
+├── app/          # init, providers, router, global styles
+├── pages/        # pages
+├── widgets/      # widgets (composition of features and blocks)
+├── features/     # features
+├── entities/     # entities
+└── shared/       # UI, API, config, utils, styles
 ```
 
-### Analysis
+Imports only “down”: app → pages/widgets/features → entities → shared.
 
-![Build Analysis Screenshot](repository/images/bundle.png)
+### Where to put code: layer questions
 
-## 🚀 Quick Start  
+Before adding code, ask yourself in order:
 
-### Prerequisites  
-- **Node.js**: Ensure you have Node.js >=24.12 installed.  
-- **Package Manager**: pnpm (recommended) or npm
+1. **App** — is this app init, routing, providers, global styles, or app-wide config?
+2. **Pages** — is this a full page (screen) for one route/URL?
+3. **Widgets** — is this a large self-contained UI block used on multiple pages or one of several such blocks on one page?
+4. **Features** — is this a user action with business value, reused in different places (form, action button, flow)?
+5. **Entities** — is this a business entity from the domain (model, entity representation without binding to one action)?
+6. **Shared** — is the code not business-bound: utils, UI kit, API client, config, i18n?
 
-### Installation
+The first match defines the layer. If none fit — clarify boundaries (don’t bloat entities; non-reused code can stay on the page).
+
+## Requirements
+
+- **Node.js** ≥ 24.12
+- **pnpm** (recommended)
+
+## Install and run
+
 ```bash
-git clone <repository-url>
-cd <project-directory>
+git clone <repo-url>
+cd reactjs-template
 pnpm install
-# or
-npm install
-```
-
-### Start Development Server
-```bash
 pnpm run dev
-# or
-npm run dev
 ```
 
-### Build for Production
+The app will open at the URL from the output.
+
+## Scripts
+
+| Command | Description |
+|--------|-------------|
+| `pnpm run dev` | Dev server with HMR |
+| `pnpm run build` | Production build (runs check before) |
+| `pnpm run build:compress` | Build + gzip/brotli for static assets |
+| `pnpm run build:analyze` | Build + bundle size report |
+| `pnpm run serve` | Serve production build locally |
+| `pnpm run check` | Type check + lint + tests |
+| `pnpm run test` | Run tests |
+| `pnpm run lint` | ESLint (with autofix) |
+| `pnpm run format` | Prettier for code and styles |
+| `pnpm run deploy` | Deploy `dist` to GitHub Pages |
+
+## Environment variables
+
+Copy `.env.example` to `.env` and adjust if needed:
+
+- `VITE_API_URL` — base API URL
+- `VITE_I18N_*` — i18n settings (default language, storage key, debug)
+
+## Docker
+
 ```bash
-# Standard build with type checking
-pnpm run build
-
-# Build with file compression (gzip + brotli)
-pnpm run build:compress
-
-# Build with bundle analyzer
-pnpm run build:analyzer
-
-# Build with compression and analyzer
-pnpm run build:compress-analyzer
+docker build -t reactjs-template .
+docker run -p 80:80 reactjs-template
 ```
 
-### Run Tests
-```bash
-pnpm run test
+Build uses `build:compress`; static assets are served via NGINX (config in `nginx.conf`).
+
+## Code standards
+
+- Strict typing, no `any`
+- FSD: layer boundaries and import direction
+- ESLint + Steiger (FSD) in CI/local
+- Prefer arrow functions, SOLID and KISS
+- No comments or dead code in prod
+
+Detailed rules in `.cursor/rules/` and `AGENTS.md`.
+
+## Commitlint
+
+Commits are checked with **Conventional Commits** (Husky + commitlint). Format:
+
+```
+<type>(<scope>): <subject>
 ```
 
-### Code Quality
-```bash
-# Lint code
-pnpm run lint
+- **type**: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`, `ci`, `build`.
+- **scope** (optional): area of change, e.g. `auth`, `header`, `deps`.
+- **subject**: short description in imperative mood, no period at end; up to 72 chars.
 
-# Fix linting issues
-pnpm run lint:fix
+Examples: `feat(auth): add login form`, `fix(api): handle 404`, `chore(deps): update vite`.
 
-# Format code
-pnpm run format
-
-# Check TypeScript types
-pnpm run typecheck
-```
-
-### Preview Production Build
-```bash
-pnpm run serve
-```
-
-## 📜 Code Standards  
-- ✅ 100% TypeScript-first approach with strict type checking
-- 🧩 Modular architecture following Feature-Sliced Design (FSD) principles
-- ⚠️ Strict compliance with ESLint and Steiger (FSD) configuration standards
-- 🎯 Arrow functions preferred for JavaScript/TypeScript code
-- 🧹 SOLID and KISS principles adherence
-- 🚫 No unused code or comments in production code
-
-## 🙎️ Author / Contacts
-
-If you have any questions, feel free to reach out:
+## Contacts
 
 - **Email**: d_maksimyk@vk.com
-- **Telegram**: https://t.me/d_maximyuk
-- **GitHub**: https://github.com/dmaximyuk
+- **Telegram**: [t.me/d_maximyuk](https://t.me/d_maximyuk)
+- **GitHub**: [github.com/dmaximyuk](https://github.com/dmaximyuk)
 
-## 📄 License  
-This template is publicly available for any use.  
-Feel free to use, modify, and share it!  
+## License
+
+Template is free to use, modify and distribute.

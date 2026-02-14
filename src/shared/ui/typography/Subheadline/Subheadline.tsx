@@ -13,12 +13,7 @@ export interface SubheadlineProps extends Omit<TypographyProps, "level"> {
 }
 
 const Subheadline: ForwardRefRenderFunction<HTMLElement, SubheadlineProps> = (
-  {
-    level = "1",
-    className = "",
-    Component = "h6",
-    ...restProps
-  }: SubheadlineProps,
+  { level = "1", className = "", Component = "h6", ...restProps }: SubheadlineProps,
   ref,
 ) => (
   <Typography

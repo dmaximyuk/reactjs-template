@@ -1,0 +1,12 @@
+---
+description: Minimal project size: bundle, dependencies, code
+alwaysApply: true
+---
+
+# Minimal project size
+
+- **Bundle**: aim for minimal build size. Code splitting by routes, lazy-load heavy modules. Import only what is needed (named imports, tree-shaking).
+- **Dependencies**: fewer packages — smaller footprint and less upgrade surface. One light utility in shared/lib is better than a new dependency.
+- **Code**: no duplication, no dead code or unused exports. Do not add abstractions “for the future” — only for the current need.
+- **Assets**: optimize images/fonts; do not add unnecessary files to the repo or build.
+- **When choosing**: if two solutions are equal in quality — prefer the one with a smaller bundle or less code.

@@ -17,12 +17,7 @@ const titleLevelTags: Record<TitleLevel, ElementType> = {
   "3": "h4",
 };
 
-const Title: FC<TitleProps> = ({
-  level = "2",
-  className = "",
-  Component,
-  ...props
-}) => (
+const Title: FC<TitleProps> = ({ level = "2", className = "", Component, ...props }) => (
   <Typography
     {...props}
     className={cn("Title", `Title__wrapper--${level}`, className)}

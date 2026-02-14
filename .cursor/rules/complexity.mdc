@@ -1,0 +1,11 @@
+---
+description: Algorithm complexity, Big-O, optimality without over-engineering
+alwaysApply: true
+---
+
+# Complexity and optimality
+
+- **Consider Big-O**: when choosing data structures and algorithms, estimate time and, when relevant, space complexity. For typical data sizes (lists in the hundreds/thousands, occasional large sets) — do not add complexity without need.
+- **Optimize in context**: optimize bottlenecks (hot paths, large lists, heavy render). Keep the rest simple and clear; avoid premature optimization.
+- **No over-engineering**: if O(n²) with n < 100 is acceptable and the code is obvious — do not introduce complex structures for theoretical gains. Code complexity must be justified by real load or requirements.
+- **Explicit trade-offs**: when deliberately choosing a “less optimal” solution (for simplicity), you need not document Big-O in code; for non-obvious choices, briefly note in PR or task.

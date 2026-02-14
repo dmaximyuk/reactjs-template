@@ -1,5 +1,4 @@
-import { Theme } from "src/shared/models";
+import { Theme } from "@/shared/models";
 
 export const THEME = (localStorage.getItem("theme") || Theme.Light) as Theme;
-export const LANGUAGE =
-  localStorage.getItem("lang") || navigator.language || "en";
+export const LANGUAGE = localStorage.getItem("lang") || navigator.language || "en";

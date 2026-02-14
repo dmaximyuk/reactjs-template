@@ -1,0 +1,11 @@
+---
+description: Designing solutions, team maintainability, feature integration
+alwaysApply: true
+---
+
+# Design and maintainability
+
+- **Design the solution**: before writing code, think through the option that best fits the task and future evolution. Compare options by simplicity, extensibility, and consistency with the project.
+- **Team maintainability**: code must be understandable to any developer on the team. Clear structure, predictable contracts (API, types), consistent style. Avoid “magic” and non-obvious solutions without good reason.
+- **Feature integration**: design extension points so new features plug in without breaking existing code. Clear slice boundaries (FSD), stable public API of layers, minimal tight coupling between features. Think about how the next feature will be added.
+- **No future surprises**: do not leave hidden dependencies or non-obvious side effects. Changes in one place must not unexpectedly break another.

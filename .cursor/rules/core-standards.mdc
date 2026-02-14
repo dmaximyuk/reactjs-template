@@ -1,0 +1,15 @@
+---
+description: Clean code, architecture, SOLID, KISS — project baseline standards
+alwaysApply: true
+---
+
+# Code and architecture standards
+
+- **Clean code**: readable names, single responsibility for functions/modules, no duplication. Code should be self-documenting.
+- **Clean architecture**: layers do not depend on implementation details. Follow FSD: app → pages/widgets/features → entities → shared. Imports only “down” the layers (shared does not import from pages/features/widgets).
+- **SOLID**: one class/module — one reason to change; depend on abstractions; keep interfaces narrow and stable.
+- **KISS**: choose the simplest solution that works. Avoid extra abstractions and “for the future” code.
+- **No comments in code**: meaning comes from names and structure. Exception: public API or non-obvious workarounds with an explicit note.
+- **Remove dead code**: do not leave commented-out or unused code.
+- **Style**: prefer neat, consistent, maintainable code. Prefer arrow functions in JS/TS.
+- **English only in the project**: all project content must be in English — README, documentation, `.cursor/rules`, AGENTS.md, commit messages, code (identifiers, literals, logs). No Russian or other languages in repo artifacts. User-facing text in the app goes through i18n (locale files may contain any language).

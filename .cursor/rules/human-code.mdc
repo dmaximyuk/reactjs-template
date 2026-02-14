@@ -1,0 +1,11 @@
+---
+description: Human-style code — not AI-generated looking
+alwaysApply: true
+---
+
+# Human-style code
+
+- **Write like a developer on the team**: natural names, patterns that match the project, no excessive “perfect” boilerplate. Avoid typical AI tells: extra wrappers, over-abstraction, repetitive naming.
+- **Right-sized**: as much code and structure as the task needs. Do not inflate for “architecture beauty” or squeeze into unreadable clutter.
+- **Consistency with the project**: look at existing code (names, file layout, component style) and match it. Code should feel like part of the same project, not an external insert.
+- **No one-size-fits-all**: do not copy the same pattern everywhere. Choose the shape for the context — sometimes a plain function is better than a class or a set of hooks.

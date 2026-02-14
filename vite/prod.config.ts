@@ -1,17 +1,16 @@
 import { defineConfig } from "vite";
-
 import path from "node:path";
+import browserslistToEsbuild from "browserslist-to-esbuild";
 
 import defaultConfig from "./default.config";
 import { compilerOptions } from "../tsconfig.json";
 
 export default () => {
-  const isCompressMode = process.env.BUILD_COMPRESS === "true";
-
   return defineConfig({
     ...defaultConfig(),
     base: "/",
     build: {
+      target: browserslistToEsbuild(),
       sourcemap: false,
       cssCodeSplit: false,
       cssMinify: "lightningcss",
@@ -20,11 +19,11 @@ export default () => {
       manifest: false,
       reportCompressedSize: true,
       terserOptions: {
-        maxWorkers: isCompressMode ? 4 : 2,
+        maxWorkers: 4,
         compress: {
           drop_debugger: true,
           drop_console: true,
-          passes: isCompressMode ? 5 : 3,
+          passes: 5,
           pure_funcs: ["console.log", "console.info", "console.debug"],
         },
         format: {

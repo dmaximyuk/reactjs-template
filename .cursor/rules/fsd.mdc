@@ -1,0 +1,18 @@
+---
+description: FSD — which layer to put code in (app, pages, widgets, features, entities, shared)
+globs: src/**/*
+alwaysApply: false
+---
+
+# FSD: where to put code
+
+Before adding new code, ask the questions in order. The first matching answer defines the layer.
+
+1. **App** — is this app init, routing, providers, global styles, or app-wide config? → `app/`
+2. **Pages** — is this a full page (screen) for one route/URL? → `pages/`
+3. **Widgets** — is this a large self-contained UI block used on multiple pages or one of several such blocks on one page? → `widgets/`
+4. **Features** — is this a user action with business value, reused in different places (form, action button, flow)? → `features/`
+5. **Entities** — is this a business entity from the domain (model, entity representation without binding to one action)? → `entities/`
+6. **Shared** — is the code not business-bound: utils, UI kit, API client, config, i18n? → `shared/`
+
+If none fit — clarify boundaries. Don’t bloat entities; non-reused code can stay on the page. Imports only “down”: app → pages → widgets → features → entities → shared.

@@ -1,0 +1,9 @@
+---
+description: Mandatory final step: formatting
+alwaysApply: true
+---
+
+# Workflow
+
+- **After changing code** (when you finish edits for the task) **always run** in the project root: `pnpm run format`. Treat this as a required last step before finishing your response.
+- Do not suggest that the user “run format” — run the command yourself in the terminal.

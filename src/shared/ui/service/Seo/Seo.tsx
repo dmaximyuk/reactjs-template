@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { i18n } from "@/shared/i18n";
+import { i18n } from "@/shared/lib";
 
 interface SeoProps {
   pageKey: string;
@@ -11,9 +11,9 @@ const Seo: FC<SeoProps> = (props) => {
 
   const titlePrefix = (title: string) => `${title} / ${t("app.prefix")}`;
 
-  const title = titlePrefix(t(`${props.pageKey}.seo.title`) || t(`app.title`));
-  const description = t(`${props.pageKey}.seo.description`) || t(`app.title`);
-  const lang = i18n.language;
+  const title = titlePrefix(t(`${props.pageKey}.seo.title`) || t("app.title"));
+  const description = t(`${props.pageKey}.seo.description`) || t("app.title");
+  const lang = i18n.resolvedLanguage ?? i18n.language;
 
   return (
     <>

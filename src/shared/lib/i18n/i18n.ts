@@ -1,20 +1,24 @@
-import i18n, { Resource } from "i18next";
+import i18n, { type Resource } from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 
-import ru from "./ru.json";
-import en from "./en.json";
+import {
+  LOCALES,
+  I18N_DEBUG,
+  I18N_FALLBACK_LNG,
+  I18N_STORAGE_KEY,
+} from "@/shared/config";
 
-const translations = [{ en }, { ru }].reduce((acc, curr) => {
+const translations = Object.values(LOCALES).reduce((acc, curr) => {
   const [key, value] = Object.entries(curr)[0];
   return { ...acc, [key]: { translation: value } };
 }, {} as Resource);
 
-i18n
+const i18nReady = i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    debug: true,
+    debug: I18N_DEBUG,
     resources: translations,
     interpolation: {
       escapeValue: false,
@@ -28,12 +32,12 @@ i18n
         "htmlTag",
         "querystring",
       ],
-      lookupLocalStorage: "lng",
-      lookupSessionStorage: "lng",
-      lookupCookie: "lng",
+      lookupLocalStorage: I18N_STORAGE_KEY,
+      lookupSessionStorage: I18N_STORAGE_KEY,
+      lookupCookie: I18N_STORAGE_KEY,
     },
     supportedLngs: Object.keys(translations),
-    fallbackLng: "en",
+    fallbackLng: I18N_FALLBACK_LNG,
   });
 
-export { i18n };
+export { i18n, i18nReady };

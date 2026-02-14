@@ -1,0 +1,11 @@
+---
+description: Dependencies: up-to-date versions, minimal set of libraries
+alwaysApply: true
+---
+
+# Dependencies and libraries
+
+- **Up-to-date versions**: before adding or updating a package, check current versions (npm/pnpm view, docs, changelog). Suggest versions compatible with the current Node and stack.
+- **Minimal dependencies**: add a new library only when necessary. Consider first: native API, already installed packages, a small custom module in shared/lib.
+- **Justify**: when proposing a new dependency, briefly explain why it is needed and why existing options are insufficient.
+- **Size and impact**: for frontend, consider bundle impact (tree-shakeable, ESM). Do not pull heavy libs for one utility — prefer a small implementation in shared/lib.

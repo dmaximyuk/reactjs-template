@@ -1,7 +1,6 @@
 import { type AllHTMLAttributes, type FC } from "react";
 
-import { i18n } from "@/shared/i18n";
-
+import { i18n } from "@/shared/lib";
 import { Section, Seo } from "@/shared/ui";
 
 interface HomeProps extends Omit<AllHTMLAttributes<HTMLElement>, ""> {}
@@ -10,11 +9,6 @@ const pageKey = "home";
 
 const Home: FC<HomeProps> = () => {
   const { t } = i18n;
-
-  /*
-   * add this for testing error boundary
-   * throw new Error("This error in components...");
-   * */
 
   const title = t(`${pageKey}.title.header`);
   const text = t(`${pageKey}.title.subheader`);

@@ -1,18 +1,6 @@
 export const NAV_LINKS = [
-  {
-    to: "/the",
-    label: "The",
-  },
-  {
-    to: "/best",
-    label: "best",
-  },
-  {
-    to: "/react",
-    label: "react",
-  },
-  {
-    to: "/template",
-    label: "template",
-  },
+  { to: "/the", labelKey: "nav.the" },
+  { to: "/best", labelKey: "nav.best" },
+  { to: "/react", labelKey: "nav.react" },
+  { to: "/template", labelKey: "nav.template" },
 ];

@@ -11,7 +11,7 @@ export const RouterProvider: FC<RouterProviderProps> = () => {
   return (
     <>
       <P router={router} />
-      <TanStackRouterDevtools router={router} />
+      {import.meta.env.DEV && <TanStackRouterDevtools router={router} />}
     </>
   );
 };

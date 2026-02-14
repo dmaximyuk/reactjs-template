@@ -7,16 +7,8 @@ import { Typography, TypographyProps } from "@/shared/ui";
 
 export type HeadlineProps = TypographyProps;
 
-const Headline: FC<HeadlineProps> = ({
-  className = "",
-  Component = "h5",
-  ...props
-}) => (
-  <Typography
-    {...props}
-    className={cn("Headline", className)}
-    Component={Component}
-  />
+const Headline: FC<HeadlineProps> = ({ className = "", Component = "h5", ...props }) => (
+  <Typography {...props} className={cn("Headline", className)} Component={Component} />
 );
 
 export default Headline;

@@ -1,15 +1,15 @@
 import { type FC } from "react";
 import { type ErrorComponentProps } from "@tanstack/react-router";
 
-import { i18n } from "@/shared/i18n";
+import { i18n } from "@/shared/lib";
 
 import { Section, Seo } from "@/shared/ui";
 
-interface NotFoundProps extends ErrorComponentProps {}
+interface ErrorInterceptionProps extends ErrorComponentProps {}
 
 const pageKey = "errorBoundary";
 
-const ErrorInterception: FC<NotFoundProps> = () => {
+const ErrorInterception: FC<ErrorInterceptionProps> = () => {
   const { t } = i18n;
 
   const title = t(`${pageKey}.title.header`);

@@ -1,7 +1,7 @@
 import { type FC } from "react";
 import { type NotFoundRouteProps } from "@tanstack/react-router";
 
-import { i18n } from "@/shared/i18n";
+import { i18n } from "@/shared/lib";
 
 import { Section, Seo } from "@/shared/ui";
 

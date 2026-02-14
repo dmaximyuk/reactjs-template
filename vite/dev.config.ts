@@ -7,7 +7,7 @@ export default () =>
     ...defaultConfig(),
     build: {
       target: "esnext",
-      sourcemap: false,
+      sourcemap: true,
       minify: false,
       cssCodeSplit: false,
     },

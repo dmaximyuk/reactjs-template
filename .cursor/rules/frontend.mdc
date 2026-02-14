@@ -1,0 +1,13 @@
+---
+description: Frontend: FSD, valibot, errors, optimization
+globs: src/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Frontend specifics
+
+- **FSD**: follow Feature-Sliced Design strictly. Public API of layers via index.ts; slices do not import “up” the hierarchy.
+- **Validation**: use valibot for data and input schemas. Validate at boundaries (API, forms, query params).
+- **Errors**: wrap async and external calls in try/catch; handle errors meaningfully (user message, log, do not swallow silently). Type errors where useful.
+- **Optimization**: memoization (useMemo/useCallback) only where there is measurable benefit or heavy computation/render. Avoid unnecessary re-renders; virtualize lists when needed.
+- **Translations**: use the shared i18n instance from `@/shared/lib`: `import { i18n } from "@/shared/lib"`, then `const { t } = i18n`. Do not use `useTranslation` or other i18n hooks.
