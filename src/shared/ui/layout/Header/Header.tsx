@@ -1,4 +1,4 @@
-import "./Header.sass";
+import "./Header.scss";
 
 import { type AllHTMLAttributes, type FC } from "react";
 

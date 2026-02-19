@@ -1,4 +1,4 @@
-import "./Section.sass";
+import "./Section.scss";
 
 import { type AllHTMLAttributes, type FC, type JSX } from "react";
 import cn from "clsx";
